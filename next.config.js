@@ -1,6 +1,12 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-}
+// /** @type {import('next').NextConfig} */
 
-module.exports = nextConfig
+module.exports = {
+  reactStrictMode: true,
+  images: {
+    domains: ["cdn.rohlik.cz"],
+  },
+  experimental: {
+    // Enables the styled-components SWC transform
+    styledComponents: true,
+  },
+};
