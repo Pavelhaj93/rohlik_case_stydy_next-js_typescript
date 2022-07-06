@@ -18,7 +18,7 @@ export default function handler(
         price: {
           full,
           currency
-        }
+        },
       }
     })
   }

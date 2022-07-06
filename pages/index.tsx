@@ -5,18 +5,16 @@ import type {
 } from "next";
 import Head from "next/head";
 import React from "react";
-import styled from 'styled-components';
+import styled from "styled-components";
 
 import ProductCard from "../src/components/ProductCard";
-import { Product } from '../types';
-
-
+import { Product } from "../types";
 
 interface IProps {
-  products: Product[]
+  products: Product[];
 }
 
-const Home   = ({ products }: IProps) => {
+const Home = ({ products }: IProps) => {
   return (
     <>
       <Head>
@@ -27,7 +25,9 @@ const Home   = ({ products }: IProps) => {
       <main>
         <ProductsContainer>
           {products?.map((product: Product) => {
-            return <ProductCard product={product} key={product.id}></ProductCard>;
+            return (
+              <ProductCard product={product} key={product.id}></ProductCard>
+            );
           })}
         </ProductsContainer>
       </main>
@@ -45,10 +45,12 @@ export const getServerSideProps: GetServerSideProps = async () => {
 
 export default Home;
 
-const ProductsContainer = styled.div`{
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  padding-top: 12vh;
-}`
+const ProductsContainer = styled.div`
+   {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding-top: 12vh;
+  }
+`;
