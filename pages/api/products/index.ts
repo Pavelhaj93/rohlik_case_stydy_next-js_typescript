@@ -1,7 +1,7 @@
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
 
-import data from '../../src/data/data.json';
+import data from '../../../src/data/data.json';
 
 
 export default function handler(

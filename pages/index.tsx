@@ -1,20 +1,40 @@
+import { CommentsDisabledOutlined } from "@mui/icons-material";
 import type {
   NextPage,
   GetServerSideProps,
   InferGetServerSidePropsType,
 } from "next";
 import Head from "next/head";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 
 import ProductCard from "../src/components/ProductCard";
 import { Product } from "../types";
+import Filter from '../src/components/Filter';
+
 
 interface IProps {
-  products: Product[];
+  items: Product[];
 }
 
-const Home = ({ products }: IProps) => {
+const Home = ({ items }: IProps) => {
+  const [searchTerm, setSearchTerm] = useState<string>("");
+  const [products, setProducts] = useState(items);
+
+  console.log(products, "items");
+
+  useEffect(() => {
+    if (searchTerm === "") {
+      setProducts(items);
+    } else {
+      const filteredData = items.filter((product) =>
+        product.name.toLowerCase().includes(searchTerm)
+      );
+      setProducts(filteredData)
+      console.log(searchTerm)
+    }
+  }, [searchTerm, items]);
+
   return (
     <>
       <Head>
@@ -23,6 +43,7 @@ const Home = ({ products }: IProps) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
+        <Filter setSearchTerm={setSearchTerm} />
         <ProductsContainer>
           {products?.map((product: Product) => {
             return (
@@ -38,9 +59,9 @@ const Home = ({ products }: IProps) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async () => {
-  const res = await fetch("http://localhost:3000/api/data");
+  const res = await fetch("http://localhost:3000/api/products");
   const data = await res.json();
-  return { props: { products: data } };
+  return { props: { items: data } };
 };
 
 export default Home;

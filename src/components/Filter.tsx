@@ -1,14 +1,21 @@
-import React from 'react'
+import React, { ChangeEvent } from 'react'
 import styled from "styled-components"
 
-const Filter = () => {
+type InputEvent = ChangeEvent<HTMLInputElement>
+
+interface SearchProps {
+    setSearchTerm: (value: any) => void;
+  }
+
+const Filter: React.FC<SearchProps> = ({ setSearchTerm }) => {
+
   return (
     <>
         <FilterContainer>
             <input 
             type="text"
             placeholder='Search products...'
-            // onChange=""
+            onChange={(e: InputEvent) => setSearchTerm(e.target.value.toLowerCase())}
             style={{ width: "300px"}}
             />
         </FilterContainer>
@@ -19,8 +26,14 @@ const Filter = () => {
 export default Filter
 
 const FilterContainer = styled.div`{
-    height: 2em;
+    height: 100px;
+    width: 300px;
+    position: fixed;
     display: flex;
     justify-content: center;
-    z-index: 4;
+    align-items: center;
+    z-index: 100;
+    padding-top: 3vh;
+    left: 50%;
+    transform: translateX(-50%)
 }`
