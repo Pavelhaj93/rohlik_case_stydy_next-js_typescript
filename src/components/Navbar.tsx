@@ -7,6 +7,7 @@ import logo from "../assets/rohlik-cz-logo-vector.png";
 import Link from "next/link";
 
 const Navbar = () => {
+
   return (
     <>
       <NavContainer>

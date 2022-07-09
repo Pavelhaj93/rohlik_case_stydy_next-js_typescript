@@ -9,13 +9,10 @@ type LayoutProps = {
 
 const Layout: React.FunctionComponent<LayoutProps> = ({ children }) => {
 
-  const test = () => {
-    console.log("test")
-  }
   
   return (
     <div>
-        <Navbar test={test} />
+        <Navbar />
         <Main>
             {children}
         </Main>

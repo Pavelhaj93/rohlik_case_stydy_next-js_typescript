@@ -4,9 +4,13 @@ import "../styles/globals.scss";
 import Layout from "../src/components/Layout";
 
 function MyApp({ Component, pageProps }: AppProps) {
+
+  const test = () => {
+    console.log("test")
+  }
   return (
     <Layout>
-      <Component {...pageProps} />
+      <Component test={test} {...pageProps} />
     </Layout>
   );
 }

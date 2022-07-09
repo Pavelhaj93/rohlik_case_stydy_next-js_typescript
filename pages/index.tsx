@@ -10,18 +10,17 @@ import styled from "styled-components";
 
 import ProductCard from "../src/components/ProductCard";
 import { Product } from "../types";
-import Filter from '../src/components/Filter';
-
+import Filter from "../src/components/Filter";
 
 interface IProps {
   items: Product[];
 }
 
-const Home = ({ items }: IProps) => {
+const Home = ({ items }: IProps, test: any) => {
   const [searchTerm, setSearchTerm] = useState<string>("");
   const [products, setProducts] = useState(items);
 
-  console.log(products, "items");
+  console.log(test)
 
   useEffect(() => {
     if (searchTerm === "") {
@@ -30,8 +29,8 @@ const Home = ({ items }: IProps) => {
       const filteredData = items.filter((product) =>
         product.name.toLowerCase().includes(searchTerm)
       );
-      setProducts(filteredData)
-      console.log(searchTerm)
+      setProducts(filteredData);
+      console.log(searchTerm);
     }
   }, [searchTerm, items]);
 
